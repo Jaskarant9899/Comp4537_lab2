@@ -1,13 +1,13 @@
 const http = require("http");
 const url = require("url");
-const { getDate } = require("./modules/utils");
+const { getDate } = require("./modules/utils.js");
 
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
 
   const name = parsedUrl.query.name || "Guest(no entry in URL)";
 
-  const greetingMessage = require("./lang/en/user.js").greetingMessage;
+  const greetingMessage = require("../lang/en/user.js").greetingMessage;
 
   const currentTime = getDate();
 
@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
   res.end();
 });
 
-const port = 8080;
+const port = 8999;
 
 server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
