@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
 
   const name = parsedUrl.query.name || "Guest(no entry in URL)";
 
-  const greetingMessage = require("../lang/en/user.js").greetingMessage;
+  const greetingMessage = require("./lang/en/user.js").greetingMessage;
 
   const currentTime = getDate();
 
