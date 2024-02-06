@@ -10,7 +10,7 @@ const port = process.env.PORT || 8999;
 
   const name = parsedUrl.query.name || "Guest(no entry in URL)";
 
-  const currentTime = getDate();
+  const currentTime = getDate.getDate();
 
   //use replace func to replace %1 with name from url string
   const formattedGreeting = greetingMessage.replace("%1", name);
