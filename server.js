@@ -1,27 +1,23 @@
-const http = require("http");
-const url = require("url");
-const { getDate } = require("./modules/utils.js");
+// use the predefined modules
+const http = require('http');
+const url = require('url');
 
-const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true);
+// use our date and messages modules
+const date = require('./modules/utils');
+const messages = require('./modules/messages');
 
-  const name = parsedUrl.query.name || "Guest(no entry in URL)";
+// define our port
+const port = process.env.PORT || 8888;
 
-  const greetingMessage = require("./lang/en/user.js").greetingMessage;
+// listen on the port
+http.createServer(function(req,res) {
+    res.writeHead(200,{'Content-Type': 'text/html'});
 
-  const currentTime = getDate();
+    let currentDate = date.date();
+    let param = url.parse(req.url,true);
+    let name = param.query["name"] || "Coder";
+    const color = 'style="color:blue;"';
 
-  //use replace func to replace %1 with name from url string
-  const formattedGreeting = greetingMessage.replace("%1", name);
-  const responseMessage = `<div style="color: blue;">${formattedGreeting}. Server current date and time is ${currentTime}</div>`;
-
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.write(responseMessage);
-  res.end();
-});
-
-const port = process.env.PORT || 8999;
-
-server.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+    let text = `<p ${color}>${messages.part1}${name}${messages.part2}${currentDate}</p>`;
+    res.end(text);
+}).listen(port);

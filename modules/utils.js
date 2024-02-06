@@ -1,7 +1,4 @@
-function getDate() {
-    const currentDate = new Date();
-    return currentDate.toString();
-  }
-  
-  module.exports = { getDate };
-  
+exports.date = 
+function(){
+    return new Date();
+};
