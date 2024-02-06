@@ -1,14 +1,13 @@
 const http = require("http");
 const url = require("url");
-const { getDate } = require("./modules/utils.js");
+const getDate  = require("./modules/utils.js");
+const greetingMessage = require("./modules/messages.js").greetingMessage;
 const port = process.env.PORT || 8999;
 
  http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
 
   const name = parsedUrl.query.name || "Guest(no entry in URL)";
-
-  const greetingMessage = require("./lang/en/user.js").greetingMessage;
 
   const currentTime = getDate();
 
